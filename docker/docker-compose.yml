@@ -1,0 +1,24 @@
+standardizer-haproxy:
+  image: tutum/haproxy
+  container_name: standardizer
+  links:
+  - standardizer-service
+  ports:
+  - "18082:80"
+
+standardizer-elasticsearch:
+  image: elasticsearch:2.0.2
+  volumes:
+  - "/opt/standardizer/esdata:/usr/share/elasticsearch/data"
+  ports:
+  - "9200:9200"
+  - "9300:9300"
+
+standardizer-service:
+  build: standardizer
+  links:
+  - "standardizer-elasticsearch:standardizer-elasticsearch"
+  expose:
+  - "8080"
+  environment:
+  - "elasticSearchHost=standardizer-elasticsearch"

@@ -1,0 +1,17 @@
+target/
+.scala_dependencies
+.cache
+.DS_Store
+.settings
+.classpath
+.project
+.springBeans
+/data
+.mvn/
+
+### Intellij Idea ###
+*.ids
+*.iml
+*.ipr
+*.iws
+.idea/
